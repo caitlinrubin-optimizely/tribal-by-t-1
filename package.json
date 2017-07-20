@@ -3,7 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf ./build",
+    "build:app": "webpack --progress --config app.webpack.config.js",
+    "build:dll": "webpack --progress --config dll.webpack.config.js",
+    "build": "npm run clean && npm run build:dll && npm run build:app",
+    "lint": "eslint 'client/src/*'"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
