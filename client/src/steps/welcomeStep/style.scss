@@ -1,0 +1,25 @@
+@import "../../theme/index.scss";
+
+.welcome-step {
+  &__logo {
+    width: 30%;
+    position: relative;
+    margin: 0 auto spacer(3);
+  }
+
+  &__heading {
+    font-size: map-fetch($font, size, gamma);
+    text-align: center;
+    margin-bottom: spacer(3);
+    font-weight: light;
+    text-transform: uppercase;
+    letter-spacing: map-fetch($font, letter-spacing, loose);
+    color: map-fetch($color, text, charcoal);
+  }
+
+  &__paragraph {
+    font-size: map-fetch($font, size, milli);
+    line-height: map-fetch($font, line-height, loose);
+    color: map-fetch($color, text, medium);
+  }
+}

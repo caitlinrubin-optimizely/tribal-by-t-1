@@ -1,0 +1,18 @@
+@import "../../theme/index.scss";
+
+.installation-step {
+  &__heading {
+    font-size: map-fetch($font, size, gamma);
+    text-align: center;
+    margin-bottom: spacer(3);
+    font-weight: light;
+    text-transform: uppercase;
+    letter-spacing: map-fetch($font, letter-spacing, loose);
+    color: map-fetch($color, text, charcoal);
+  }
+
+  &__loader-container {
+    padding: spacer(3);
+    text-align: center;
+  }
+}
