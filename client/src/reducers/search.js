@@ -2,6 +2,7 @@ import _ from 'lodash'
 import {
   EXECUTE_QUERY,
   UPDATE_QUERY,
+  DELETE_QUESTION,
 } from 'actions/searchActions'
 
 export const search = (state = {
@@ -33,6 +34,11 @@ export const search = (state = {
         query: action.query,
       });
       break;
+    case DELETE_QUESTION:
+    _.merge(nextState, {
+      questionId: action.questionId,
+    });
+    break;
     default:
       // Do not mutate state
       break;

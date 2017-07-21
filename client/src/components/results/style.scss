@@ -11,4 +11,8 @@
     color: map-fetch($color, text, medium);
     padding-top: spacer(1);
   }
+
+  &__trash-button {
+    float: right;
+  }
 }

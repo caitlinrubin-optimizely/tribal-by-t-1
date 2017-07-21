@@ -73,5 +73,16 @@ router.post('/question', function(req, res, next){
     })
 })
 
+router.delete('/question', function(req, res, next){
+  var questionId = req.query.questionId
+  Question.remove({'_id': questionId})
+          .then(function(resp) {
+            res.status(200).send('Okay');
+          })
+          .catch(function(err) {
+            res.status(400).send('Error: ' + err);
+          })
+})
+
 
 module.exports = router;

@@ -1,8 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import { BlockList, Badge } from 'optimizely-oui';
+import { BlockList, Badge, Button } from 'optimizely-oui';
 import { connect } from 'react-redux';
+import { deleteQuestion } from 'actions/searchActions';
 
 import SlackMessage from 'components/slackMessage';
 
@@ -29,7 +30,16 @@ const Results = (props) => {
           <Badge color="draft">
             Source: Slack
           </Badge>
+          <div className="results__trash-button">
+            <Button
+              size="tiny"
+              style="danger-outline"
+              onClick={() => props.deleteQuestion(result._id)}>
+              <i className="fa fa-trash-o"></i>
+            </Button>
+          </div>
         </BlockList.Item>
+
       </BlockList.Category>
     );
   });
@@ -65,7 +75,9 @@ const mapStateToProps = ({ search }) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    deleteQuestion: deleteQuestion(dispatch),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);
