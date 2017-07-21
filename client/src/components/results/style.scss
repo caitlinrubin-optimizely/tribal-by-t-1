@@ -1,0 +1,14 @@
+@import "../../theme/index";
+
+.results {
+  padding-top: spacer(1);
+
+  &__question {
+    font-weight: bold;
+  }
+
+  &__answer {
+    color: map-fetch($color, text, medium);
+    padding-top: spacer(1);
+  }
+}

@@ -1,8 +1,9 @@
-var express = require('express');
-var router = express.Router();
-var rp = require('request-promise')
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema
+const express = require('express');
+const router = express.Router();
+const rp = require('request-promise')
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema
+const path = require('path');
 mongoose.connect(process.env.MONGO_URI);
 
 var db = mongoose.connection;
@@ -21,7 +22,7 @@ var Question = mongoose.model('Question', questionSchema);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.sendFile(path.resolve(__dirname, '../build/index.html'));
 });
 
 router.get('/channel_list', function(req,res,next) {
@@ -42,10 +43,11 @@ router.get('/channel_list', function(req,res,next) {
 })
 
 router.get('/question', function(req, res, next){
+  console.log("req.params", req.query);
   Question.find({$text: {$search: req.query.query}}, {score: {$meta: "textScore"}})
           .sort({score:{$meta:"textScore"}})
           .then(function(resp){
-            return resp;
+            return res.json(resp);
           })
           .catch(function(err){
             next(err)
@@ -53,6 +55,7 @@ router.get('/question', function(req, res, next){
 })
 
 router.post('/question', function(req, res, next){
+  console.log(req.params);
   var content = req.body.content;
   var question = content[0];
   var answers = content.slice(1);

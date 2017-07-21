@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
 
-import { setup } from './setup'
+import { search } from './search'
 
-export default combineReducers({ setup })
+export default combineReducers({ search })

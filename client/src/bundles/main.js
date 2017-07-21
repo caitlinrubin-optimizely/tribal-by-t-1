@@ -5,11 +5,7 @@ import { createStore, applyMiddleware } from 'redux'
 import reducers from 'reducers'
 import thunkMiddleware from 'redux-thunk'
 
-import WelcomeStep from 'steps/welcomeStep';
-import PasswordStep from 'steps/passwordStep';
-import InstallationStep from 'steps/installationStep';
-
-import Wizard from 'components/Wizard';
+import Layout from 'components/layout';
 
 import './main.scss';
 
@@ -23,11 +19,7 @@ class Main extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Wizard>
-          <WelcomeStep title="Welcome" />
-          <PasswordStep title="Credentials" />
-          <InstallationStep title="Installation" />
-        </Wizard>
+        <Layout />
       </Provider>
     )
   }

@@ -1,0 +1,41 @@
+@import "../../theme/index";
+
+.layout {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  padding: spacer(4);
+
+  &__top-bar {
+    margin-bottom: spacer(4);
+  }
+
+  &__logo {
+    font-size: map-fetch($font, size, delta);
+    text-transform: uppercase;
+    color: map-fetch($color, text, medium);
+    font-weight: 300;
+    letter-spacing: map-fetch($font, letter-spacing, loose);
+
+    img {
+      height: map-fetch($font, size, beta);
+      display: inline-block;
+      margin-right: spacer(1);
+      vertical-align: bottom;
+    }
+  }
+
+  &__search {
+    &-bar {
+      display: flex;
+    }
+
+    &-field {
+      flex-grow: 1;
+    }
+
+    &-button {
+      padding-left: spacer(1);
+    }
+  }
+}
