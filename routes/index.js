@@ -42,10 +42,10 @@ router.get('/channel_list', function(req,res,next) {
 })
 
 router.get('/question', function(req, res, next){
-  Question.find({$text: {$search: req.params.query}}, {score: {$meta: "textScore"}})
+  Question.find({$text: {$search: req.query.query}}, {score: {$meta: "textScore"}})
           .sort({score:{$meta:"textScore"}})
           .then(function(resp){
-            return response;
+            return resp;
           })
           .catch(function(err){
             next(err)
