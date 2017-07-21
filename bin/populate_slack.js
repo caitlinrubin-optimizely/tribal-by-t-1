@@ -3,7 +3,7 @@
 //C03DPN3QY -- engineering
 var rp = require('request-promise')
 var slack_token = process.env.SLACK_TOKEN;
-var slack_channel = process.argv[2]
+var slack_channel = process.argv[2] || 'C03DPN3QY'
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema
 mongoose.connect(process.env.MONGO_URI);
@@ -96,76 +96,9 @@ TimeSent.findOne()
 				})
 				.then(function(doc){
 					console.log("SUCCESS: ", doc)
+					process.exit();
 				})
 				.catch(function(err) {
 					console.log("ERR:", err)
+					process.exit();
 				})
-
-
-
-
-
-
-
-
-
-
-				// router.get('/slack', function(req, res, next) {
-				//   var slack_token = process.env.SLACK_TOKEN;
-				//   // var url = 'https://slack.com/api/channels.history?token=' + slack_token + '&channel=C2F8YUGHL'
-				//   var options = {
-				//     method: 'POST',
-				//     uri: 'https://slack.com/api/channels.history',
-				//     qs: {
-				//       'token': slack_token,
-				//       'channel': 'C2F8YUGHL'
-				//     },
-				//     json: true // Automatically stringifies the body to JSON
-				//   }
-				//
-				//   rp(options)
-				//   .then(function(resp) {
-				//     var messages = resp.messages;
-				//     var texts = [];
-				//     for (var i = messages.length-1; i >= 0; i--) {
-				//       if (messages[i].text != '') {
-				//         texts.push(messages[i].text);
-				//       }
-				//     }
-				//
-				//     var found_question = false;
-				//     var question_answers = [];
-				//     var all_questions = [];
-				//     for (var i = 0; i < texts.length; i++) {
-				//       if (isQuestion(texts[i])) {
-				//         found_question = true;
-				//         if(question_answers.length > 0) {
-				//           all_questions.push(question_answers);
-				//         }
-				//         question_answers = []
-				//       }
-				//
-				//       if (found_question) {
-				//         question_answers.push(texts[i])
-				//       }
-				//     }
-				//
-				//     if (question_answers.length > 0) {
-				//       all_questions.push(question_answers)
-				//     }
-				//
-				//     var promises = [];
-				//     for (var i = 0; i < all_questions.length; i++) {
-				//       var content = all_questions[i];
-				//       var question = content[0];
-				//       var answers = content.slice(1);
-				//       var answers_objs = []
-				//
-				//       var q = new Question({
-				//         content: question,
-				//         answers: [answers]
-				//       }).save()
-				//     }
-				//     return res.render('index', {'title': 'Express'})
-				//   });
-				// })
