@@ -43,10 +43,11 @@ router.get('/channel_list', function(req,res,next) {
 })
 
 router.get('/question', function(req, res, next){
-  Question.find({$text: {$search: req.params.query}}, {score: {$meta: "textScore"}})
+  console.log("req.params", req.query);
+  Question.find({$text: {$search: req.query.query}}, {score: {$meta: "textScore"}})
           .sort({score:{$meta:"textScore"}})
           .then(function(resp){
-            return response;
+            return res.json(resp);
           })
           .catch(function(err){
             next(err)
@@ -54,6 +55,7 @@ router.get('/question', function(req, res, next){
 })
 
 router.post('/question', function(req, res, next){
+  console.log(req.params);
   var content = req.body.content;
   var question = content[0];
   var answers = content.slice(1);
